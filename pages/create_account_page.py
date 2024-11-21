@@ -5,9 +5,6 @@ from pages.base_page import BasePage
 
 class CreateAccount(BasePage):
     page_url = 'https://magento.softwaretestingboard.com/customer/account/create/'
-    creating_new_account_text = 'Thank you for registering with Main Website Store.'
-    email_error_text = 'Please enter a valid email address (Ex: johndoe@domain.com).'
-    confirm_password_error = 'Please enter the same value again.'
 
     def fill_first_name(self, f_name):
         self.fill_field(CreateAccountLocators.FIELD_FIRST_NAME, f_name)
@@ -38,12 +35,12 @@ class CreateAccount(BasePage):
         self.fill_form(f_name, l_name, email, password, confirm_password)
         self.click_create_account()
 
-    def check_creating_new_account(self):
+    def check_creating_new_account(self, creating_new_account_text):
         self.check_is_this_account_page()
-        self.check_element_text(AccountPage.SUCCESSFUL_CREATING_ALERT, self.creating_new_account_text)
+        self.check_element_text(AccountPage.SUCCESSFUL_CREATING_ALERT, creating_new_account_text)
 
-    def check_is_there_email_error(self):
-        self.check_element_text(CreateAccountLocators.EMAIL_ERROR, self.email_error_text)
+    def check_is_there_email_error(self, email_error_text):
+        self.check_element_text(CreateAccountLocators.EMAIL_ERROR, email_error_text)
 
-    def check_is_there_confirm_error(self):
-        self.check_element_text(CreateAccountLocators.CONFIRM_PASSWORD_ERROR, self.confirm_password_error)
+    def check_is_there_confirm_error(self, confirm_password_error):
+        self.check_element_text(CreateAccountLocators.CONFIRM_PASSWORD_ERROR, confirm_password_error)
