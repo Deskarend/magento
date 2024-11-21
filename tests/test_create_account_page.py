@@ -1,10 +1,10 @@
-def test_create_account(create_account, first_name, last_name, email, password):
+def test_create_account(create_account, account_page, first_name, last_name, email, password):
     creating_new_account_text = 'Thank you for registering with Main Website Store.'
 
     create_account.open_page()
     create_account.create_account(first_name, last_name, email, password, password)
 
-    create_account.check_creating_new_account(creating_new_account_text)
+    account_page.check_creating_new_account(creating_new_account_text)
 
 
 def test_fill_incorrect_email(create_account):

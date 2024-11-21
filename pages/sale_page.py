@@ -13,3 +13,6 @@ class SalePage(BasePage):
 
     def click_on_link_luma_gear(self):
         self.click_on_element(SalePageLocators.LINK_LUMA_GEAR)
+
+    def check_is_this_sale_page(self):
+        self.check_page_title(SalePageLocators.TITLE)

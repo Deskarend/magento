@@ -1,4 +1,3 @@
-from locators.account_page_locators import AccountPage
 from locators.create_account_locators import CreateAccountLocators
 from pages.base_page import BasePage
 
@@ -34,10 +33,6 @@ class CreateAccount(BasePage):
     def create_account(self, f_name, l_name, email, password, confirm_password):
         self.fill_form(f_name, l_name, email, password, confirm_password)
         self.click_create_account()
-
-    def check_creating_new_account(self, creating_new_account_text):
-        self.check_is_this_account_page()
-        self.check_element_text(AccountPage.SUCCESSFUL_CREATING_ALERT, creating_new_account_text)
 
     def check_is_there_email_error(self, email_error_text):
         self.check_element_text(CreateAccountLocators.EMAIL_ERROR, email_error_text)

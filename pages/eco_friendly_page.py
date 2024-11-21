@@ -16,5 +16,8 @@ class EcoFriendlyPage(BasePage):
         self.random_product_name = random_product.text
         random_product.click()
 
+    def get_random_product_name(self):
+        return self.random_product_name
+
     def click_on_sign_in_link(self):
         self.click_on_element(EcoFriendlyPageLocators.AUTHORIZATION_LINK)

@@ -2,14 +2,6 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from locators.account_page_locators import AccountPage
-from locators.gear_page_locators import GearLocators
-from locators.item_page_locators import ItemPageLocators
-from locators.men_sale_locators import MenSaleLocators
-from locators.sale_page_locators import SalePageLocators
-from locators.sing_in_locators import SignInLocators
-from locators.women_sale_locators import WomenSaleLocators
-
 
 class BasePage:
     page_url = None
@@ -45,24 +37,5 @@ class BasePage:
         web_element = self.find_element(element)
         assert web_element.text == text
 
-    def check_is_this_account_page(self):
-        WebDriverWait(self.driver, self.wait).until(EC.visibility_of_element_located(AccountPage.TITLE_MY_ACCOUNT_TAB))
-
-    def check_is_this_sale_page(self):
-        assert WebDriverWait(self.driver, self.wait).until(EC.visibility_of_element_located(SalePageLocators.TITLE))
-
-    def check_is_this_random_product_page(self):
-        WebDriverWait(self.driver, self.wait).until(EC.visibility_of_element_located(ItemPageLocators.ITEM_NAME))
-        assert self.random_product_name == self.find_element(ItemPageLocators.ITEM_NAME).text
-
-    def check_is_this_sign_in_page(self):
-        assert WebDriverWait(self.driver, self.wait).until(EC.visibility_of_element_located(SignInLocators.TITLE))
-
-    def check_is_this_women_sale_page(self):
-        assert WebDriverWait(self.driver, self.wait).until(EC.visibility_of_element_located(WomenSaleLocators.TITLE))
-
-    def check_is_this_men_sale_page(self):
-        assert WebDriverWait(self.driver, self.wait).until(EC.visibility_of_element_located(MenSaleLocators.TITLE))
-
-    def check_is_this_gear_page(self):
-        assert WebDriverWait(self.driver, self.wait).until(EC.visibility_of_element_located(GearLocators.TITLE))
+    def check_page_title(self, page_title_locator):
+        assert WebDriverWait(self.driver, self.wait).until(EC.visibility_of_element_located(page_title_locator))
