@@ -32,14 +32,14 @@ jobs:
         continue-on-error: true
       - name: Run create account page
         if: "github.event.inputs.deployment_target == 'create account page'"
-        run: pytest .\tests\test_create_account_page.py
+        run: pytest ./tests/test_create_account_page.py
         continue-on-error: true
       - name: Run create account page
         if: "github.event.inputs.deployment_target == 'eco friendly page'"
-        run: pytest .\tests\test_eco_friendly_page.py
+        run: pytest ./tests/test_eco_friendly_page.py
         continue-on-error: true
       - name: Run create account page
         if: "github.event.inputs.deployment_target == 'sale page'"
-        run: pytest .\tests\test_sale_page.py
+        run: pytest ./tests/test_sale_page.py
         continue-on-error: true
 
