@@ -62,6 +62,7 @@ jobs:
           name: _site
           path: _site
           retention-days: 1
+  
   publish-report:
     name: Report piblication
     runs-on: ubuntu-latest
