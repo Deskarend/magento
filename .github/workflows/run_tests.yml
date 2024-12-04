@@ -111,7 +111,7 @@ jobs:
           retention-days: 1
   
   publish-report:
-    name: Report piblication
+    name: Report publication
     runs-on: ubuntu-latest
     needs: run-tests
     steps:
