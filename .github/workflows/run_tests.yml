@@ -28,18 +28,33 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run all pages
         if: "github.event.inputs.deployment_target == 'all'"
-        run: pytest 
+        run: pytest --alluredir=allure-results
         continue-on-error: true
       - name: Run create account page
         if: "github.event.inputs.deployment_target == 'create account page'"
-        run: pytest ./tests/test_create_account_page.py
+        run: pytest ./tests/test_create_account_page.py --alluredir=allure-results
         continue-on-error: true
       - name: Run create account page
         if: "github.event.inputs.deployment_target == 'eco friendly page'"
-        run: pytest ./tests/test_eco_friendly_page.py
+        run: pytest ./tests/test_eco_friendly_page.py --alluredir=allure-results
         continue-on-error: true
       - name: Run create account page
         if: "github.event.inputs.deployment_target == 'sale page'"
-        run: pytest ./tests/test_sale_page.py
+        run: pytest ./tests/test_sale_page.py --alluredir=allure-results
         continue-on-error: true
+      - name: Install Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'microsoft' 
+          java-version: '17'
+      - name: Install Allure
+        run: sudo wget https://github.com/allure-framework/allure2/releases/download/2.23.1/allure-2.23.1.tgz && sudo tar -zxvf allure-2.23.1.tgz -C /opt/ && sudo ln -s /opt/allure-2.23.1/bin/allure /usr/bin/allure
+      - name: Generate Allure report
+        run: allure generate -c allure-results -o allure-report
+      - name: Save Allure report
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
+          retention-days: 1
 
