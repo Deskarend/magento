@@ -1,6 +1,7 @@
 import pytest
 from faker import Faker
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 from pages.account_page import AccountPage
 from pages.create_account_page import CreateAccount
@@ -17,7 +18,9 @@ fake = Faker()
 
 @pytest.fixture
 def driver():
-    chrome_driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument('--headless')
+    chrome_driver = webdriver.Chrome(options=options)
     return chrome_driver
 
 
