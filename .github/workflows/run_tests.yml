@@ -20,7 +20,7 @@ on:
           - sale page
 
 jobs:
-  download-history:
+ download-history:
     runs-on: ubuntu-latest
     name: Download history
     steps:
@@ -60,11 +60,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
-          path:
-            allure-results
+          path: allure-results
           retention-days: 1
 
-  run-tests:
+run-tests:
     runs-on: ubuntu-latest
     name: Run autotests
     needs: download-history
