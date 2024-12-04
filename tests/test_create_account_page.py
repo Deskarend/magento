@@ -1,3 +1,7 @@
+import allure
+
+
+@allure.title('Some title')
 def test_create_account(create_account, account_page, first_name, last_name, email, password):
     creating_new_account_text = 'Thank you for registering with Main Website Store.'
 
