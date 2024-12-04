@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -12,6 +13,7 @@ class BasePage:
     def __init__(self, driver: WebDriver):
         self.driver = driver
 
+    @allure.step("Открыть страницу")
     def open_page(self):
         self.driver.get(self.page_url)
 
