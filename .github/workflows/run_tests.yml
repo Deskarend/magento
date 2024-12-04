@@ -1,1 +1,45 @@
+name: mangeto autotests
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Choose page tests
+        required: true
+        type: choice
+        default: all
+        options:
+          - all
+          - create account page
+          - eco friendly page
+          - sale page
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    name: Run autotests
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+         python-version: '3.13' 
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run all pages
+        if: "github.event.inputs.deployment_target == 'all'"
+        run: pytest 
+        continue-on-error: true
+      - name: Run create account page
+        if: "github.event.inputs.deployment_target == 'create account page'"
+        run: pytest test_create_account_page.py
+        continue-on-error: true
+      - name: Run create account page
+        if: "github.event.inputs.deployment_target == 'eco friendly page'"
+        run: pytest test_eco_friendly_page.py
+        continue-on-error: true
+      - name: Run create account page
+        if: "github.event.inputs.deployment_target == 'sale page'"
+        run: pytest test_sale_page.py
+        continue-on-error: true
 
